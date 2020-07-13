@@ -12,3 +12,10 @@ devices.forEach(function(device) {
     </tr>`
     );
     });
+
+$('#add-device').on('click', function() {
+    const user = $('#user').val();
+    const name = $('#name').val();
+    devices.push({ user, name });
+    location.href = 'device-list.html';
+});
