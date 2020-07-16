@@ -23,3 +23,5 @@ $('#send-command').on('click', function() {
     const command = $('#command').val();
     console.log(`command is: ${command}`);
     });
+
+$('#footer').load('footer.html');
