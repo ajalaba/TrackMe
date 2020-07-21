@@ -21,6 +21,12 @@ app.get('/send-command', (req, res) => {
 app.get('/about', (req, res) => {
     res.sendFile(`${base}/about-me.html`);
     });
+app.get('/registration', (req, res) => {
+    res.sendFile(`${base}/registration.html`);
+    });
+app.get('/login', (req, res) => {
+    res.sendFile(`${base}/login.html`);
+    });
 app.get('*', (req, res) => {
     res.sendFile(`${base}/404.html`);
     });
