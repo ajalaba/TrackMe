@@ -46,20 +46,20 @@ else {
 }
 
 
-$.get(`${API_URL}/devices`)
-.then(response => {
-response.forEach(device => {
-$('#devices tbody').append(`
-<tr>
-<td>${device.user}</td>
-<td>${device.name}</td>
-</tr>`
-);
-});
-})
-.catch(error => {
-console.error(`Error: ${error}`);
-});
+// $.get(`${API_URL}/devices`)
+// .then(response => {
+// response.forEach(device => {
+// $('#devices tbody').append(`
+// <tr>
+// <td>${device.user}</td>
+// <td>${device.name}</td>
+// </tr>`
+// );
+// });
+// })
+// .catch(error => {
+// console.error(`Error: ${error}`);
+// });
 
 $('#add-device').on('click', () => {
     const name = $('#name').val();
