@@ -2,7 +2,7 @@ $('#navbar').load('navbar.html');
 $('#footer').load('footer.html');
 
 const devices = JSON.parse(localStorage.getItem('devices')) || [];
-const API_URL = 'api-theta-nine.vercel.app/api';
+const API_URL = 'https://api-theta-nine.vercel.app/';
 const currentUser = localStorage.getItem('user');
 
 if (currentUser) {
