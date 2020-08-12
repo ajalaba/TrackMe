@@ -3,6 +3,7 @@ $('#footer').load('footer.html');
 
 const devices = JSON.parse(localStorage.getItem('devices')) || [];
 const API_URL = 'https://api-theta-nine.vercel.app/api';
+const MQTT_URL = 'http://localhost:5001/send-command'
 const currentUser = localStorage.getItem('user');
 
 if (currentUser) {
@@ -82,28 +83,31 @@ $.post(`${API_URL}/devices`, body)
 });
 
 $('#send-command').on('click', function() {
+    const deviceId = $('#deviceId').val();
     const command = $('#command').val();
-    console.log(`command is: ${command}`);
-    });
+    $.post(`${MQTT_URL}`, { deviceId, command })
+    .then(response => {
+        location.href = '/'
+    })
+});
 
-
-    $('#register').on('click', () => {
-        const user = $('#user').val();
-        const password = $('#password').val();
-        const confirm = $('#confirm').val();
-        if (password !== confirm) {
-            $('#message').append('<p class="alert alert-danger">Passwords do not match</p>');
-        } else {
-            $.post(`${API_URL}/registration`, { user, password })
-            .then((response) =>{
-                if (response.success) {
-                location.href = '/login';
-                } else {
-                $('#message').append(`<p class="alert alert-danger">${response}</p>`);
-                }
-            });
-        }
+$('#register').on('click', () => {
+    const user = $('#user').val();
+    const password = $('#password').val();
+    const confirm = $('#confirm').val();
+    if (password !== confirm) {
+        $('#message').append('<p class="alert alert-danger">Passwords do not match</p>');
+    } else {
+        $.post(`${API_URL}/registration`, { user, password })
+        .then((response) =>{
+            if (response.success) {
+            location.href = '/login';
+            } else {
+            $('#message').append(`<p class="alert alert-danger">${response}</p>`);
+            }
         });
+    }
+});
     
 
 
@@ -113,18 +117,18 @@ $('#login').on('click', () => {
     $.post(`${API_URL}/authenticate`, { user, password })
     .then((response) =>{
     if (response.success) {
-    localStorage.setItem('user', user);
-    localStorage.setItem('isAdmin', response.isAdmin);
-    localStorage.setItem('isAuthenticated', true);
-    location.href = '/';
+        localStorage.setItem('user', user);
+        localStorage.setItem('isAdmin', response.isAdmin);
+        localStorage.setItem('isAuthenticated', true);
+        location.href = '/';
     } else {
-    $('#message').append(`<p class="alert alert-danger">${response}</p>`);
+        $('#message').append(`<p class="alert alert-danger">${response}</p>`);
     }
-    });
+});
 });
 
 const logout = () => {
     localStorage.removeItem('user');
     localStorage.removeItem('isAuthenticated');
     location.href = '/login';
-    }
+}

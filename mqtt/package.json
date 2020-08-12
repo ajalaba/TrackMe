@@ -1,15 +1,25 @@
 {
-  "name": "mqtt",
+  "name": "mqtt-api",
   "version": "1.0.0",
-  "description": "",
   "main": "mqtt.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "mqtt.js"
   },
-  "author": "",
+  "author": "Aaron Alaba",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
-  }
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.28",
+    "mqtt": "^4.1.0",
+    "random-coordinates": "^1.0.1",
+    "random-floating": "^1.0.1",
+    "random-int": "^2.0.1",
+    "random-integral": "^1.0.3",
+    "random-latitude": "^1.0.1",
+    "random-longitude": "^1.0.1"
+  },
+  "devDependencies": {},
+  "description": ""
 }
