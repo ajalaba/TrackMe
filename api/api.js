@@ -101,13 +101,14 @@ app.post('/api/devices', (req, res) => {
     });
 
     /**
-* @api {post} /api/send-command AllDevices An array of all devices
+* @api {post} /api/authenticate Authentication of data
 * @apiGroup Device
 * @apiSuccessExample {json} Success-Response:
-*   { name: "Kev's Samsung", user: 'kev', sensorData: [] }
+*   { Authenticated successfully }
 * @apiErrorExample {json} Error-Response:
 * {
-* "User does not exist"
+* "No user found"
+* "Incorrect password"
 * }
 */  
 
@@ -132,6 +133,16 @@ app.post('/api/authenticate', (req, res) => {
         });
 });
 
+    /**
+* @api {post} /api/registration Registration of data
+* @apiGroup Device
+* @apiSuccessExample {json} Success-Response:
+*   { Created new user }
+* @apiErrorExample {json} Error-Response:
+* {
+* "User already exists"
+* }
+*/ 
 app.post('/api/registration', (req, res) => {
 	const { user, password, isAdmin } = req.body;
 	console.log(req.body);
